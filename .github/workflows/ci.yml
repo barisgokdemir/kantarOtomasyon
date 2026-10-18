@@ -1,0 +1,63 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+env:
+  DOTNET_NOLOGO: true
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+
+jobs:
+  test:
+    name: Testler (SQL Server 2022)
+    runs-on: ubuntu-latest
+    services:
+      mssql:
+        image: mcr.microsoft.com/mssql/server:2022-latest
+        env:
+          ACCEPT_EULA: "Y"
+          MSSQL_SA_PASSWORD: KantarTest123Strong
+        ports:
+          - 1433:1433
+        options: >-
+          --health-cmd "/opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P KantarTest123Strong -C -Q 'SELECT 1'"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 12
+    env:
+      KANTAR_TEST_BAGLANTI: Server=localhost,1433;User ID=sa;Password=KantarTest123Strong;TrustServerCertificate=true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - run: dotnet restore tests/KantarOtomasyon.Tests
+      - run: dotnet build tests/KantarOtomasyon.Tests -c Release --no-restore -warnaserror
+      - run: dotnet test tests/KantarOtomasyon.Tests -c Release --no-build --logger trx --logger "console;verbosity=normal" --results-directory TestResults
+      - name: Test sonuçlarını yükle
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-sonuclari
+          path: TestResults
+
+  windows:
+    name: Derleme (Windows / WinForms)
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - run: dotnet restore
+      - run: dotnet build -c Release --no-restore -warnaserror
+      - name: Birim testleri
+        run: dotnet test -c Release --no-build
+      - run: dotnet publish src/KantarOtomasyon.WinForms -c Release -r win-x64 --self-contained false -o publish
+      - uses: actions/upload-artifact@v4
+        with:
+          name: KantarOtomasyon-win-x64
+          path: publish
