@@ -16,7 +16,7 @@ public sealed class GirisForm : Form
     {
         _servis = servis;
         _kayitEden = kayitEden;
-        Ui.FormAyarla(this, "Araç Girişi", 420, 320);
+        Ui.FormAyarla(this, "Araç Girişi", 420, 290);
 
         _agirlik.TextChanged += (_, _) => _gosterge.Text = $"{_agirlik.Text} Kg";
         var kaydet = Ui.Buton("Kaydet", (_, _) => Kaydet());

@@ -11,6 +11,18 @@ Kantara giren ve çıkan araçların tartımlarını kaydeden masaüstü uygulam
 - Ana ekranda kantardaki araçlar, araç sayısı ve toplam ağırlık
 - Çıkış yapan araçların kayıtları silinmez, geçmiş olarak saklanır
 
+## Ekran görüntüleri
+
+![Ana ekran](Ekran%20görüntüleri/03-ana-ekran.png)
+
+| Giriş | Kullanıcı kaydı |
+|---|---|
+| ![Giriş](Ekran%20görüntüleri/01-giris.png) | ![Kayıt](Ekran%20görüntüleri/02-kayit.png) |
+
+| Araç girişi | Araç çıkışı |
+|---|---|
+| ![Araç girişi](Ekran%20görüntüleri/04-arac-girisi.png) | ![Araç çıkışı](Ekran%20görüntüleri/05-arac-cikisi.png) |
+
 ## Proje yapısı
 
 | Proje | Açıklama |

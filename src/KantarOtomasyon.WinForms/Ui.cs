@@ -76,6 +76,8 @@ internal static class Ui
         AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill,
         RowHeadersVisible = false,
         AutoGenerateColumns = false,
+        BackgroundColor = SystemColors.Window,
+        ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize,
     };
 
     public static void AracKolonlari(DataGridView tablo)
@@ -87,6 +89,7 @@ internal static class Ui
             HeaderText = "Giriş Tarihi",
             DataPropertyName = nameof(Core.AracKaydi.GirisTarihi),
             DefaultCellStyle = { Format = "dd.MM.yyyy HH:mm" },
+            MinimumWidth = 135,
         });
         tablo.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "Kayıt Eden", DataPropertyName = nameof(Core.AracKaydi.KayitEden) });
         tablo.Columns.Add(new DataGridViewTextBoxColumn

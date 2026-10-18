@@ -14,7 +14,7 @@ public sealed class LoginForm : Form
     public LoginForm(KullaniciServisi servis)
     {
         _servis = servis;
-        Ui.FormAyarla(this, "Kantar Otomasyon - Giriş", 380, 230);
+        Ui.FormAyarla(this, "Kantar Otomasyon - Giriş", 380, 205);
 
         var girisButonu = Ui.Buton("Giriş", (_, _) => GirisYap());
         Controls.Add(Ui.Izgara(("Kullanıcı adı", _ad), ("Şifre", _sifre)));
