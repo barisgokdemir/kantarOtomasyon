@@ -15,7 +15,7 @@ public sealed class KayitForm : Form
     public KayitForm(KullaniciServisi servis)
     {
         _servis = servis;
-        Ui.FormAyarla(this, "Kullanıcı Kaydı", 400, 220);
+        Ui.FormAyarla(this, "Kullanıcı Kaydı", 400, 205);
 
         var kaydet = Ui.Buton("Kaydet", (_, _) => Kaydet());
         Controls.Add(Ui.Izgara(("Kullanıcı adı", _ad), ("Şifre", _sifre), ("Şifre tekrar", _sifreTekrar)));

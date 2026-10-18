@@ -17,7 +17,7 @@ public sealed class CikisForm : Form
     public CikisForm(KantarServisi servis)
     {
         _servis = servis;
-        Ui.FormAyarla(this, "Araç Çıkışı", 820, 520);
+        Ui.FormAyarla(this, "Araç Çıkışı", 960, 520);
 
         Ui.AracKolonlari(_tablo);
         _tablo.SelectionChanged += (_, _) => Sec();
